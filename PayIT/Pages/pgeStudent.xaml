@@ -1,0 +1,183 @@
+﻿<Page x:Class="PayIT.pgeStudent"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+       xmlns:wpfx="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
+      xmlns:local="clr-namespace:PayIT"
+      mc:Ignorable="d" 
+      d:DesignHeight="711" d:DesignWidth="1190"
+      Title="Student" Loaded="Window_Loaded">
+  
+    <Grid Background="White">
+                     
+        <TabControl>
+            <TabItem ToolTip="Add Student">
+                <TabItem.Header>
+                    <Image Source="/Icons_Images/Add-Redesign.png" Height="40" Width="50"/>
+                </TabItem.Header>
+
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal" Background="DarkRed">
+                        <StackPanel Margin="30" Orientation="Vertical" Background="LightGray" Width="330" Height="510">
+                            <Label Content="ADD STUDENT" Width="300" FontSize="18" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Margin="100,5,100,0" IsEnabled="False" FontWeight="Bold"/>
+                            <Label Content="NAME" Width="130" Height="30" FontSize="14" HorizontalContentAlignment="Center" FontWeight="Bold" Margin="85,10,85,0"/>
+                            <TextBox x:Name="txtAddStudentName" Width="200" Height="30" FontSize="14" HorizontalContentAlignment="Center" FontWeight="Bold"/>
+                            <TextBlock Width="300" Height="5" IsEnabled="False"/>
+                            <Label Content="SURNAME" Width="130" Height="30" FontSize="14" HorizontalContentAlignment="Center" FontWeight="Bold"/>
+                            <TextBox x:Name="txtAddStudentSurName" Width="200" Height="30" FontSize="14" HorizontalContentAlignment="Center" FontWeight="Bold"/>
+                            <TextBlock Width="300" Height="5" IsEnabled="False"/>
+                            <Label Content="EMAIL" Width="130" Height="30" FontSize="14" HorizontalContentAlignment="Center" FontWeight="Bold"/>
+                            <TextBox x:Name="txtAddStudentEmail" Width="200" Height="30" FontSize="14" HorizontalContentAlignment="Center" FontWeight="Bold"/>
+                            <TextBlock Width="300" Height="5" IsEnabled="False"/>
+                            <Label Content="SPONSOR" Width="130" Height="30" FontSize="14" HorizontalContentAlignment="Center" FontWeight="Bold"/>
+                            <TextBox x:Name="txtAddStudentSponsor" Width="200" Height="30" FontSize="14" HorizontalContentAlignment="Center" FontWeight="Bold"/>
+                            <TextBlock Width="300" Height="5" IsEnabled="False"/>
+                            <Label Content="GRADE" Width="130" Height="30" FontSize="14" HorizontalContentAlignment="Center" FontWeight="Bold"/>
+                            <wpfx:DoubleUpDown x:Name="txtAddStudentPhoneNum" Width="200" Height="30" FontSize="14" HorizontalContentAlignment="Center" FontWeight="Bold" Minimum="6" Maximum="13" ValueChanged="txtAddStudentPhoneNum_ValueChanged"/>
+                            <TextBlock Width="300" Height="5" IsEnabled="False"/>
+                            <Label Content="CATEGORY" Width="130" Height="30" FontSize="14" HorizontalContentAlignment="Center" FontWeight="Bold"/>
+                            <ComboBox x:Name="txtAddStudentCategory" Width="200" Height="30" FontSize="14" HorizontalContentAlignment="Center" FontWeight="Bold">
+                                <!--<ComboBoxItem>Grade 8 - 10</ComboBoxItem>-->
+                                <!--<ComboBoxItem>Grade 11 - Varsity</ComboBoxItem>-->
+                            </ComboBox>
+                            <TextBlock Width="300" Height="20" IsEnabled="False"/>
+                            <Button Content="ADD STUDENT" x:Name="btnAddStudent" Height="40" Background="DarkRed" Foreground="White" FontWeight="Bold" FontSize="16" Margin="10,0" Width="200" Click="btnAddStudent_Click"/>
+                            <TextBlock Width="300" Height="5" IsEnabled="False"/>
+                        </StackPanel>
+                        <StackPanel>
+
+                            <!--View Students in this datagrid-->
+                            <DataGrid x:Name="dgAddStudent" ItemsSource="{Binding}" AlternatingRowBackground="#4C800000" FontSize="14" ColumnWidth="Auto" HorizontalAlignment="Left" Width="760" Margin="5,30,0,10" AutoGenerateColumns="False" Height="460" >
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Student No."  Binding="{Binding StudentID}"/>
+                                    <DataGridTextColumn Header="Full Name" Binding="{Binding Fullname}" />
+
+                                    <DataGridTextColumn Header="Email" Binding="{Binding EmailAddress}"/>
+                                    <DataGridTextColumn Header="Sponsor" Binding="{Binding Sponsor}"/>
+                                    <DataGridTextColumn Header="Grade" Binding="{Binding Grade}"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <StackPanel Margin="0 0 0 0" Orientation="Horizontal" HorizontalAlignment="Right">
+                                <TextBlock x:Name="tbCurrentPage" HorizontalAlignment="Left"  TextWrapping="Wrap" VerticalAlignment="Top" Height="30"  Width="30" FontWeight="ExtraBold" Foreground="White"/>
+                                <TextBlock Text=" of " Height="30" Width="30"  FontWeight="ExtraBold" Foreground="White"/>
+                                <TextBlock x:Name="tbTotalPage" HorizontalAlignment="Left"  TextWrapping="Wrap" VerticalAlignment="Top" Height="30"  Width="30" FontWeight="ExtraBold" Foreground="White"/>
+
+                            </StackPanel>
+                            <!--View Students in this datagrid-->
+                            <StackPanel Orientation="Horizontal" Margin="-0"/>
+                            <StackPanel Orientation="Horizontal"  HorizontalAlignment="Right" Margin="-10">
+                                <Button Height="23" HorizontalAlignment="Left" x:Name="btnFirst" 
+                    VerticalAlignment="Bottom" Width="77" Click="btnFirst_Click" Content="First"/>
+                                <Button Height="23" HorizontalAlignment="Left" x:Name="btnPrev" 
+                    VerticalAlignment="Bottom" Width="77" Click="btnPrev_Click" Content="Previous"/>
+                                <Button Height="23" x:Name="btnNext" 
+                    VerticalAlignment="Bottom" Click="btnNext_Click" Content="Next" Width="65"/>
+                                <Button x:Name="btnLast" Height="23" HorizontalAlignment="Right" 
+                    VerticalAlignment="Bottom" Width="78" Click="btnLast_Click" Content="Last" Margin="0,0,10,0"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Background="LightGray">
+                        <Image Source="/lowkeyitai_aQF_icon.ico" Height="50" Margin="10,10,0,10" HorizontalAlignment="Left"/>
+                    </StackPanel>
+                </StackPanel>
+
+
+            </TabItem>
+
+            <TabItem ToolTip="Update Student">
+                <TabItem.Header >
+                    <Image Source="/Icons_Images/Update-Redesign.png" Height="40" Width="50"/>
+                </TabItem.Header>
+
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal" Background="DarkRed">
+                        <StackPanel Margin="30" Orientation="Vertical" Background="LightGray" Width="330" Height="510">
+                            <Label Content="UPDATE STUDENT" Width="300" FontSize="18" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Margin="20,5,20,0" IsEnabled="False" FontWeight="Bold" />
+                            <Label Content="NAME" Width="130" Height="30" FontSize="14" HorizontalContentAlignment="Center" FontWeight="Bold" Margin="86,10,84,0"/>
+                            <TextBox x:Name="txtUpdateStudentName" Width="200" Height="30" FontSize="14" HorizontalContentAlignment="Center" FontWeight="Bold"/>
+                            <TextBlock Name="txtStudentID" Width="300" Height="5" IsEnabled="False"/>
+                            <Label Content="SURNAME" Width="130" Height="30" FontSize="14" HorizontalContentAlignment="Center" FontWeight="Bold"/>
+                            <TextBox x:Name="txtUpdateStudentSurName" Width="200" Height="30" FontSize="14" HorizontalContentAlignment="Center" FontWeight="Bold"/>
+                            <TextBlock Width="300" Height="5" IsEnabled="False"/>
+                            <Label Content="EMAIL" Width="130" Height="30" FontSize="14" HorizontalContentAlignment="Center" FontWeight="Bold"/>
+                            <TextBox x:Name="txtUpdateStudentEmail" Width="200" Height="30" FontSize="14" HorizontalContentAlignment="Center" FontWeight="Bold"/>
+                            <TextBlock Width="300" Height="5" IsEnabled="False"/>
+                            <Label Content="SPONSOR" Width="130" Height="30" FontSize="14" HorizontalContentAlignment="Center" FontWeight="Bold"/>
+                            <TextBox x:Name="txtUpdateStudentSponsor" Width="200" Height="30" FontSize="14" HorizontalContentAlignment="Center" FontWeight="Bold"/>
+                            <TextBlock Width="300" Height="5" IsEnabled="False"/>
+                            <Label Content="GRADE" Width="130" Height="30" FontSize="14" HorizontalContentAlignment="Center" FontWeight="Bold"/>
+                            <wpfx:DoubleUpDown x:Name="txtUpdateStudentPhoneNum" Width="200" Height="30" FontSize="14" HorizontalContentAlignment="Center" FontWeight="Bold" Minimum="6" ValueChanged="txtUpdateStudentPhoneNum_ValueChanged"/>
+                            <TextBlock Width="300" Height="5" IsEnabled="False"/>
+                            <Label Content="CATEGORY" Width="130" Height="30" FontSize="14" HorizontalContentAlignment="Center" FontWeight="Bold"/>
+                            <ComboBox x:Name="txtUpdateStudentCategory" Width="200" Height="30" FontSize="14" HorizontalContentAlignment="Center" FontWeight="Bold" >
+                               
+                            </ComboBox>
+                            <TextBlock Width="300" Height="20" IsEnabled="False"/>
+                            <Button Content="UPDATE STUDENT" x:Name="btnUpdateStudent" Height="40" Background="DarkRed" Foreground="White" FontWeight="Bold" FontSize="16" Margin="10,0" Width="200" Click="btnUpdateStudent_Click"/>
+                        </StackPanel>
+                        <StackPanel>
+                            <DataGrid x:Name="dgUpdateStudent"  AlternatingRowBackground="#4C800000" FontSize="14" ColumnWidth="Auto" HorizontalAlignment="Left" Width="760" Margin="5,30,0,10" Height="460" SelectionChanged="dgUpdateStudent_Selected">
+                               
+                            </DataGrid>
+
+                            <!--View Students in this datagrid-->
+                            <StackPanel Margin="0 0 0 0" Orientation="Horizontal" HorizontalAlignment="Right">
+                                <TextBlock x:Name="tbUpdateCurrentPage" HorizontalAlignment="Left"  TextWrapping="Wrap" VerticalAlignment="Top" Height="30"  Width="30" FontWeight="ExtraBold" Foreground="White"/>
+                                <TextBlock Text=" of " Height="30" Width="30"  FontWeight="ExtraBold" Foreground="White"/>
+                                <TextBlock x:Name="tbUpdateTotalPage" HorizontalAlignment="Left"  TextWrapping="Wrap" VerticalAlignment="Top" Height="30"  Width="30" FontWeight="ExtraBold" Foreground="White"/>
+                            </StackPanel>
+
+                            <!--These are copy pasted from the previous page please fix.-->
+                            <StackPanel Orientation="Horizontal" Margin="-0"/>
+                            <StackPanel Orientation="Horizontal"  HorizontalAlignment="Right" Margin="-10">
+                                <Button Height="23" HorizontalAlignment="Left" x:Name="btnUpdateFirst" 
+                    VerticalAlignment="Bottom" Width="77" Click="btnFirst_Click" Content="First"/>
+                                <Button Height="23" HorizontalAlignment="Left" x:Name="btnUpdatePrev" 
+                    VerticalAlignment="Bottom" Width="77" Click="btnPrev_Click" Content="Previous"/>
+                                <Button Height="23" x:Name="btnUpdateNext" 
+                    VerticalAlignment="Bottom" Click="btnNext_Click" Content="Next" Width="65"/>
+                                <Button x:Name="btnUpdateLast" Height="23" HorizontalAlignment="Right" 
+                    VerticalAlignment="Bottom" Width="78" Click="btnLast_Click" Content="Last" Margin="0,0,10,0"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Background="LightGray">
+                        <Image Source="/lowkeyitai_aQF_icon.ico" Height="50" Margin="10,10,0,10" HorizontalAlignment="Left"/>
+                    </StackPanel>
+                </StackPanel>
+            </TabItem>
+
+            <TabItem ToolTip="View Students">
+                <TabItem.Header>
+                    <Image Source="/Icons_Images/View-Redesign.png" Height="40" Width="50"/>
+                </TabItem.Header>
+
+                <StackPanel Background="DarkRed" Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal" Height="40" Margin="0,30,0,20">
+                        <TextBlock x:Name="txtbViewCourse" Text="SEARCH:" Margin="40,0,30,0" FontSize="24" Height="40" Foreground="White"/>
+                        <TextBox x:Name="txtViewCourse" Margin="0,0,0,0" Width="250" FontSize="24" TextChanged="btnSearch_Click"/>
+                        <Button x:Name="btnSearch" Content="Search" Width="67" Click="btnSearch_Click"/>
+                    </StackPanel>
+                    <!--View Students in this datagrid-->
+                    <DataGrid x:Name="dgViewStudent" Margin="40,10,40,35" Height="435" ItemsSource="{Binding}" AlternatingRowBackground="#4C800000" FontSize="14" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Student No."  Binding="{Binding StudentID}"/>
+                            <DataGridTextColumn Header="Full Name" Binding="{Binding Fullname}" />
+                            <DataGridTextColumn Header="Email" Binding="{Binding EmailAddress}"/>
+                            <DataGridTextColumn Header="Sponsor" Binding="{Binding Sponsor}"/>
+                            <DataGridTextColumn Header="Grade" Binding="{Binding Grade}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <StackPanel Background="LightGray">
+                        <Image Source="/lowkeyitai_aQF_icon.ico" Height="50" Margin="10,10,0,10" HorizontalAlignment="Left"/>
+                    </StackPanel>
+
+                </StackPanel>
+
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</Page>

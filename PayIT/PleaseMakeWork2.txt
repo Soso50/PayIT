@@ -1,0 +1,34 @@
+CREATE TEMPORARY TABLE plzWork SELECT
+    CONCAT(s.FirstName, ' ', s.Surname) AS 'Full Name',
+    s.grade AS 'Grade',
+    a.TimeSlot AS 'Attended Date',
+    (r.priceRate * SUM(a.NoOfHours)) AS 'Amount Due'
+FROM
+    student s,
+    course c,
+    invoicedetails id,
+    attendance a,
+    rate r,
+    category cat
+WHERE
+    s.studentID = id.studentID AND c.courseID = id.courseID AND a.attendanceID = id.attendanceID AND r.CategoryID = cat.CategoryID AND s.CategoryID = cat.CategoryID AND r.GroupID = a.GroupSession AND a.DeletedAt IS NULL AND CONCAT(s.FirstName, ' ', s.Surname) NOT IN(
+        'Abby Cornel',
+        'Kelsey Froneman',
+        'Andrea Ambler',
+        'Mia Deacon',
+        'Cole Honey'
+    )
+GROUP BY
+    id.AttendanceID;
+*--------------------Query The Temp Table-------------------------------*
+SELECT 
+    Full Name, 
+    Grade, 
+    Attended Date,
+    Amount Due
+FROM
+    plzWork
+ORDER BY Full Name;
+
+*--------------------Drop The Temp Table-------------------------------*
+DROP TEMPORARY TABLE table_name;
